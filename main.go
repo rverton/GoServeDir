@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -19,6 +18,6 @@ func (h logHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	current, _ := os.Getwd()
-	fmt.Println("Listening at :8080")
+	log.Printf("Listening for '%v' at :8080", current)
 	panic(http.ListenAndServe(":8080", &logHandler{http.FileServer(http.Dir(current))}))
 }
